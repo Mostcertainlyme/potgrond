@@ -262,10 +262,12 @@
 
         if (targetId === "home") {
           window.scrollTo({ top: 0, behavior: "smooth" });
+          history.pushState(null, '', '#home');
         } else {
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
             targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            history.pushState(null, '', `#${targetId}`);
           }
         }
       });
