@@ -251,19 +251,26 @@
     });
   });
 
-    document.addEventListener("DOMContentLoaded", function () {
+
+  document.addEventListener("DOMContentLoaded", function () {
     const navLinks = document.querySelectorAll("nav a[href^='#']");
 
     navLinks.forEach(link => {
-        link.addEventListener("click", function (e) {
+      link.addEventListener("click", function (e) {
         e.preventDefault();
         const targetId = this.getAttribute("href").substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
+
+        if (targetId === "home") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
             targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
-        });
+      });
     });
-    });
+  });
+
 </script>
 </html>
