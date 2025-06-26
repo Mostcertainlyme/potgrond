@@ -36,54 +36,19 @@
     }
 
     .event-description {
-      padding: 0.75rem 1.25rem;
-      margin: 0;
-      border-radius: 6px;
-      font-size: 1.1rem;
-    }
-.program-overview table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-  border: 3px solid #56bb6e;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;
-}
-
-    .program-overview tr:first-child th:first-child {
-      border-top-left-radius: 10px;
-    }
-    .program-overview tr:first-child th:last-child {
-      border-top-right-radius: 10px;
-    }
-    .program-overview tr:last-child td:first-child {
-      border-bottom-left-radius: 10px;
-    }
-    .program-overview tr:last-child td:last-child {
-      border-bottom-right-radius: 10px;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      background-color: #fff5cc;
+      border-left: 4px solid #56bb6e;
+      border-radius: 4px;
     }
 
-    /* Remove right border on last cell in a row */
-    .program-overview tr td:last-child,
-    .program-overview tr th:last-child {
-      border-right: none;
-    }
-
-      .program-overview th,
-    .program-overview td {
-      padding: 0.5rem;
-      text-align: center;
-    }
-
-    /* Remove bottom border on last row */
-    .program-overview tbody tr:last-child td {
-      border-bottom: none;
-    }
-    /* table layout fixed for equal spacing */
     .program-overview table {
-      table-layout: fixed;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: 3px solid #56bb6e;
+      margin-bottom: 1.5rem;
     }
 
     .program-overview td.clickable {
@@ -97,57 +62,26 @@
       font-weight: bold;
     }
 
+    .program-overview th,
+    .program-overview td {
+      border: 2px solid #56bb6e;
+      padding: 0.5rem;
+    }
 
-    .program-overview tbody tr:nth-child(odd) {
+    .program-overview tbody tr:nth-child(even) {
       background-color: #fff8dc;
     }
 
     .time-slot {
-      margin-bottom: 0;
-      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
     }
 
-    /* Group every two elements (time + description) for alternating background */
-    .program-day .time-slot:nth-of-type(odd) {
-      background-color: #fff8dc;
+    .program-day {
+      color: #77c4c7;
     }
 
-    /* .program-day .time-slot:nth-of-type(4n+3),
-    .program-day .time-slot:nth-of-type(4n+4) {
-      background-color: #fef0d0;
-    } */
-
-    .time-slot strong {
-      padding-left: 0.5rem;
-      display: inline-block;
-    }
-
-    details.program-day {
-      margin-bottom: 1.5rem;
-      border: 3px solid #56bb6e;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      font-family: Arial, sans-serif;
-      padding: 0;
-      overflow: hidden;
-    }
-
-
-
-    details.program-day summary {
-      padding: 1rem 1.5rem;
-      font-size: 1.4rem;
-      font-weight: bold;
-      background-color: #fbeda0;
+    .program-day:hover {
       color: #56bb6e;
-      cursor: pointer;
-      border-bottom: 2px solid #56bb6e;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    details.program-day summary:hover {
-      background-color: #eaffea;
-      color: #4aa659;
     }
 
     header {
@@ -171,7 +105,7 @@
       top: 0;
       z-index: 10;
       background-color: #fbeda0;
-      box-shadow: 0 6px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
     nav a {
