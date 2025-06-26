@@ -256,10 +256,10 @@
     <section id="about">
       <h2>About the Event</h2>
       <p>We welcome you to join us for a community event that is set in nature and is all about compassionate connection, playfulness, empowerment, knowledge sharing, exploring new ways of community-building and finding like-minded people.
-We offer different workshops for all levels of dept and connection and there will be a fair where you can find arts and crafts by (local) queer artists/ crafters. There will be a chill out space where you can listen simultaneously to relaxing music, some active workshops and some panel conversations.
-We will also host a mutual aid kitchen for which the proceeds will go to a Palestinian cause.
-We hope to see you there!
-</p>
+      We offer different workshops for all levels of dept and connection and there will be a fair where you can find arts and crafts by (local) queer artists/ crafters. There will be a chill out space where you can listen simultaneously to relaxing music, some active workshops and some panel conversations.
+      We will also host a mutual aid kitchen for which the proceeds will go to a Palestinian cause.
+      We hope to see you there!
+      </p>
     </section>
 
 <section id="program">
@@ -326,7 +326,7 @@ We hope to see you there!
     <!-- Collapsible Version -->
      <h2>Program Details</h2>
         <details class="program-day">
-        <summary><strong>Main Hall</strong></summary>
+        <summary><strong>Behind The Garden Shed</strong></summary>
         <div class="time-slot">
             <strong>09:00 - 10:00</strong>: Opening Ceremony  
             <p class="event-description">Kick off the event with a warm welcome, introductions, and an overview of what's ahead. Great for first-time attendees!</p>
@@ -338,7 +338,7 @@ We hope to see you there!
         </details>
 
         <details class="program-day">
-        <summary><strong>Workshop Room 1</strong></summary>
+        <summary><strong>Vegetable Garden</strong></summary>
         <div class="time-slot">
             <strong>10:15 - 11:00</strong>: Workshop: Sustainable Design  
             <p class="event-description">Explore sustainable product design techniques and materials through hands-on experimentation.</p>
@@ -350,7 +350,29 @@ We hope to see you there!
         </details>
 
         <details class="program-day">
-        <summary><strong>Garden Stage</strong></summary>
+        <summary><strong>Under The Tree</strong></summary>
+        <div class="time-slot">
+            <strong>11:15 - 12:00</strong>: Talk: The Future of Food  
+            <p class="event-description">A thought-provoking talk about food innovation, climate impact, and community farming futures.</p>
+        </div>
+        <div class="time-slot">
+            <strong>11:15 - 12:00</strong>: Panel: Local Farming Innovations  
+            <p class="event-description">Panelists from across the region share exciting innovations in local agriculture.</p>
+        </div>
+        </details>
+        <details class="program-day">
+        <summary><strong>Neadow Behind The Garden</strong></summary>
+        <div class="time-slot">
+            <strong>11:15 - 12:00</strong>: Talk: The Future of Food  
+            <p class="event-description">A thought-provoking talk about food innovation, climate impact, and community farming futures.</p>
+        </div>
+        <div class="time-slot">
+            <strong>11:15 - 12:00</strong>: Panel: Local Farming Innovations  
+            <p class="event-description">Panelists from across the region share exciting innovations in local agriculture.</p>
+        </div>
+        </details>
+          <details class="program-day">
+        <summary><strong>Gather At The Terrace</strong></summary>
         <div class="time-slot">
             <strong>11:15 - 12:00</strong>: Talk: The Future of Food  
             <p class="event-description">A thought-provoking talk about food innovation, climate impact, and community farming futures.</p>
@@ -385,9 +407,11 @@ We hope to see you there!
 
     // Table cell click to scroll to corresponding section
     const cellMap = {
-      1: "Main Hall",
-      2: "Workshop Room 1",
-      3: "Garden Stage"
+      1: "Main Behind The Garden Shed",
+      2: "Vegetable Garden",
+      3: "Under The Tree",
+      4:"Neadow Behind The Garden",
+      5:"Gather At The Terrace<"
     };
 
     document.querySelectorAll(".program-overview tbody tr").forEach(row => {
