@@ -15,11 +15,15 @@
       font-weight: normal;
       font-style: normal;
     }
+    html {
+      height: 100%;
+    }
 
-    body {
+   body {
       margin: 0;
       font-family: 'Bubblegum', sans-serif;
       background-color: #fbeda0;
+   
     }
 
     section {
@@ -146,6 +150,7 @@
       font-family: Arial, sans-serif;
       padding: 0;
       overflow: hidden;
+
     }
 
 
@@ -154,7 +159,7 @@
       padding: 1rem 1.5rem;
       font-size: 1.4rem;
       font-weight: bold;
-      background-color: #fbeda0;
+      /* background-color: #fbeda0; */
       color: #56bb6e;
       cursor: pointer;
       border-bottom: 2px solid #56bb6e;
@@ -304,8 +309,9 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 3000px; /* adjust to cover full page height */
-  overflow: hidden;
+  height: 100%;
+  min-height: 100%;
+  pointer-events: none;
   z-index: -1;
 }
 
@@ -353,6 +359,14 @@ header {
   animation-delay: 6s;
 }
 
+.blob-5 {
+  width: 600px;
+  height: 500px;
+  top: 2800px;
+  left: -200px;
+  animation-delay: 1s;
+}
+
 /* Float animation */
 @keyframes floatBlob {
   0%, 100% {
@@ -383,6 +397,12 @@ header {
     width: 900px;
     height: 800px;
   }
+
+  .blob-5 {
+    width: 1000px;
+    height: 900px;
+  }
+  
 }
 
 
@@ -407,12 +427,14 @@ header {
   </nav>
 
   <a href="#home" class="back-to-top">↑ Back to Top</a>
-<div class="animated-blobs">
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
-  <div class="blob blob-4"></div>
-</div>
+
+  <div class="animated-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
 
 <main>
   <div class="blob"></div>
