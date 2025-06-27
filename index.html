@@ -46,6 +46,8 @@
       color: black;
     }
 
+
+
   
 
     .event-description {
@@ -164,11 +166,25 @@
       color: #4aa659;
     }
 
-    header {
-      text-align: center;
-      background-position: center;
-    }
+header {
+  position: relative;
+  text-align: center;
+}
 
+/* Event banner floats over the bottom of the header */
+.event-banner {
+  position: absolute;
+  bottom: 1rem; /* fine-tune how much it overlaps */
+  left: 50%;
+  transform: translateX(-50%);
+  /* background-color: #fff8dc; */
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  padding: 1rem 2rem;
+  z-index: 5;
+  pointer-events: none; /* so nav below is clickable */
+}
     img {
       width: 80%;
       height: auto;
@@ -253,7 +269,21 @@
       .program-overview{
          font-size: 0.5rem;
       }
+
     }
+    @media (max-width: 1000px) {
+             .event-banner {
+        font-size: 1.5rem;
+         }  
+
+
+        @media (max-width: 800px) {
+             .event-banner {
+        font-size: 0.9rem;
+         }  
+    }
+
+   
     .program-overview table td:first-child,
 .program-overview table th:first-child {
   width: 10%;
@@ -265,13 +295,85 @@
   text-align: center;
 }
 
+.animated-blobs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3000px; /* adjust to cover full page height */
+  overflow: hidden;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  background-color: #fff8dc;
+  opacity: 0.35;
+  border-radius: 50%;
+  clip-path: ellipse(50% 40% at 50% 50%);
+  animation: floatBlob 18s ease-in-out infinite;
+  transform-origin: center;
+  filter: blur(1px);
+}
+
+/* Customize each blob's placement, size, and animation delay */
+.blob-1 {
+  width: 600px;
+  height: 500px;
+  top: 100px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 350px;
+  top: 800px;
+  right: -150px;
+  animation-delay: 4s;
+}
+
+.blob-3 {
+  width: 700px;
+  height: 550px;
+  top: 1400px;
+  left: -180px;
+  animation-delay: 2s;
+}
+
+.blob-4 {
+  width: 500px;
+  height: 450px;
+  top: 2200px;
+  right: -100px;
+  animation-delay: 6s;
+}
+
+/* Float animation */
+@keyframes floatBlob {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+
   </style>
 </head>
 <body>
   <div id="home"></div>
   <header>
-    <img src="images/potgrond.png" alt="Event Header Image" />
+    <img src="images/potgrond2.png" alt="Event Header Image" />
+      <div class="event-banner">
+    SATURDAY 30 AUGUST<br>12 AM – 6 PM
+  </div>
   </header>
+
+  <!-- <div class="event-banner">
+  <p>SATURDAY 30 AUGUST<br>12 AM – 6 PM</p>
+</div> -->
 
   <nav>
     <a href="#register">Register</a>
@@ -281,8 +383,15 @@
   </nav>
 
   <a href="#home" class="back-to-top">↑ Back to Top</a>
+<div class="animated-blobs">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
 
 <main>
+  <div class="blob"></div>
     <section id="about">
       <h2>About the Event</h2>
       <p>We welcome you to join us for a community event that is set in nature and is all about compassionate connection, playfulness, empowerment, knowledge sharing, exploring new ways of community-building and finding like-minded people.
@@ -324,6 +433,7 @@
 
     <p style="font-weight: bold; color: #c0392b;">‼️ If you have accessibility issues or transport limitations, please reach out to us — we’ll find a solution together!</p>
   </section>
+  
 
 <section id="program">
   <h2>Program Overview</h2>
