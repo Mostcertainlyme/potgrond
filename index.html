@@ -241,8 +241,30 @@ header {
       max-width: 800px;
       margin: 0 auto;
     }
+.back-to-top,
+.registerButton {
+  font-family: 'Bubblegum', sans-serif; /* Enforce consistency */
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  min-width: 7.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+.back-to-top span {
+  display: inline-block;
+  transform: translateY(50%); /* Adjust this until perfectly aligned */
+}
 
-    .back-to-top {
+    /* .back-to-top {
       position: fixed;
       bottom: 1rem;
       right: 1rem;
@@ -257,32 +279,32 @@ header {
       z-index: 1000;
       transition: background-color 0.3s;
       display: none;
-    }
+    } */
 
-    .back-to-top:hover {
-      /* background-color: #56bb6e; */
-    }
 
-        .registerButton {
-      position: fixed;
-      bottom: 1rem;
-      left: 1rem;
-      background-color: #56bb6e;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.3rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      z-index: 1000;
-      transition: background-color 0.3s;
-      display: block;
-    }
 
-    .registerButton:hover {
-      /* background-color: #77c4c7; */
-    }
+
+.back-to-top {
+  background-color: #77c4c7;
+  color: white;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: none; /* stays hidden until scroll */
+}
+
+.registerButton {
+  background-color: #56bb6e;
+  color: white;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
+.registerButton span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
 
     /* .registerButton {
   position: fixed;
@@ -531,7 +553,7 @@ header {
     <a href="#contact">Contact</a>
   </nav>
 
-  <a href="#home" class="back-to-top">↑ Back to Top</a>
+  <a href="#home" class="back-to-top"><span>↑ Back to Top</span></a>
   <a href= "mailto:example@proton.me" class="registerButton">Register ✍️</a>
 
   <div class="animated-blobs">
@@ -548,6 +570,7 @@ header {
       <p>We welcome you to join us for a <strong>community event</strong> that is set in <strong>nature</strong> and is all about compassionate connection, playfulness, empowerment, knowledge sharing, exploring new ways of community-building and finding like-minded people.<br><br>
       We offer different <strong>workshops</strong> for all levels of dept and connection and there will be a <strong>fair</strong> where you can find arts and crafts by (local) queer artists/ crafters. There will be a <strong>chill out space</strong> where you can listen simultaneously to <strong>relaxing music</strong>, some active workshops and some <strong>panel conversations</strong>.<br><br>
       We will also host a <strong>mutual aid kitchen</strong> for which the proceeds will go to a Palestinian cause.<br><br>
+      You can register for this event by clicking the register button in the bottom-left corner!<br><br>
       We hope to see you there!
       </p>
     </section>
