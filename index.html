@@ -252,7 +252,7 @@ header {
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1.3rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       z-index: 1000;
       transition: background-color 0.3s;
@@ -262,6 +262,51 @@ header {
     .back-to-top:hover {
       background-color: #56bb6e;
     }
+
+        .registerButton {
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      background-color: #56bb6e;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+      display: block;
+    }
+
+    .registerButton:hover {
+      background-color: #77c4c7;
+    }
+
+    /* .registerButton {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  width: 60px;
+  height: 60px;
+  background-color: #56bb6e;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  font-family: 'Bubblegum', sans-serif;
+}
+
+.registerButton:hover {
+  background-color: #77c4c7;
+} */
 
     @media (max-width: 600px) {
       nav a {
@@ -479,7 +524,7 @@ header {
 
 
   <nav>
-    <a href="#register">Register</a>
+    <!-- <a href="#register">Register</a> -->
     <a href="#about">About</a>
     <a href="#program">Programme</a>
     <a href="#preparation">Practical</a>
@@ -487,6 +532,7 @@ header {
   </nav>
 
   <a href="#home" class="back-to-top">↑ Back to Top</a>
+  <a href= "mailto:example@proton.me" class="registerButton">Register</a>
 
   <div class="animated-blobs">
     <div class="blob blob-1"></div>
