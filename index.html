@@ -305,6 +305,62 @@ header {
   text-align: center;
 }
 
+/* contact form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #fff8dc;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  font-family: Arial, sans-serif;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #56bb6e;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #56bb6e;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #4aa659;
+  background-color: #fefae0;
+}
+
+.contact-form button {
+  align-self: start;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #56bb6e;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Bubblegum', sans-serif;
+}
+
+.contact-form button:hover {
+  background-color: #4aa659;
+}
+
+/* blobs */
 .animated-blobs {
   position: fixed;
   top: 0;
@@ -655,10 +711,37 @@ header {
     </section>
 
 
-    <section id="contact">
+    <!-- <section id="contact">
       <h2>Contact</h2>
       <p><a href="mailto:example@gmail.com" target="_blank">Email Us</a></p>
+      <form onsubmit="handleMailTo(event)">
+        <label>Your Subject:
+          <input type="text" id="subject" required>
+        </label>
+        <br><br>
+        <label>Your Message:
+          <textarea id="message" rows="5" required></textarea>
+        </label>
+        <br><br>
+        <button type="submit">Send via Email</button>
+      </form>
+
+    </section> -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <form class="contact-form" onsubmit="handleMailTo(event)">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="What's it about?" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit">Open Email App</button>
+      </form>
     </section>
+
+
+
   </main>
 
 <script>
@@ -749,6 +832,16 @@ rows.forEach((row, rowIndex) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+    // Handled mail request
+    function handleMailTo(event) {
+    event.preventDefault(); // Prevent actual form submission
+
+    const subject = encodeURIComponent(document.getElementById('subject').value);
+    const body = encodeURIComponent(document.getElementById('message').value);
+    const email = "your@email.com"; // ← Replace with your own email
+
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  }
 </script>
 
 </body>
