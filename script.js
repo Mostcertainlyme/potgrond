@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     "1-4": '"Hoe word ik een graafdier?" Workshop',
     "1-5": "Boxing Workshop",
     "1-6": "Trans Bodies Workshop",
-    "2-3": "Somatic Yoga",
-    "2-4": "Resilience in Gardening",
-    "2-5": "Inner Compass Workshop",
-    "2-6": "Discriminatie Wetgeving Workshop"
+    "2-2": "Somatic Yoga",
+    "2-3": "Resilience in Gardening",
+    "2-4": "Inner Compass Workshop",
+    "2-5": "Discriminatie Wetgeving Workshop"
   };
 
   // Select all rows in the program table
