@@ -353,6 +353,9 @@ hr {
   main { padding: 1rem; }
   img { width: 100%; }
   .program-overview { font-size: 0.5rem; }
+      .blob-2 {
+    top: 600px;
+    }
 }
 
 @media (min-width: 1024px) {
