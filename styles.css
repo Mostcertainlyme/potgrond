@@ -1,0 +1,315 @@
+/* styles.css */
+
+/* Load custom font */
+@font-face {
+  font-family: 'Bubblegum';
+  src: url('fonts/Bubblegum.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Global layout and basic resets */
+html {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Bubblegum', sans-serif;
+  background-color: #fbeda0;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Headings and paragraphs */
+h2 {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #56bb6e;
+}
+
+p, ul {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+ul {
+  padding-left: 1.5rem;
+  font-size: 1.05rem;
+}
+
+/* Highlighted description blocks */
+.event-description {
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+}
+
+/* Table styling for program overview */
+.program-overview table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  border: 3px solid #56bb6e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  table-layout: fixed;
+}
+
+/* Table cells */
+.program-overview th,
+.program-overview td {
+  padding: 0.4rem;
+  text-align: left;
+}
+
+/* Row background and border removal */
+.program-overview tbody tr:nth-child(odd) {
+  background-color: #fff8dc;
+}
+
+.program-overview tr td:last-child,
+.program-overview tr th:last-child {
+  border-right: none;
+}
+
+.program-overview tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Specific cell widths */
+.program-overview table td:first-child,
+.program-overview table th:first-child {
+  width: 14%;
+}
+
+.program-overview table td:nth-child(2),
+.program-overview table th:nth-child(2) {
+  width: 10%;
+  text-align: center;
+}
+
+/* Clickable cells */
+.program-overview td.clickable {
+  color: #77c4c7;
+  cursor: pointer;
+}
+
+.program-overview td.clickable:hover {
+  color: #56bb6e;
+  background-color: #eaffea;
+  font-weight: bold;
+}
+
+/* Time slot layout */
+.time-slot {
+  margin-bottom: 0;
+  padding: 1rem 1.25rem;
+}
+
+.time-slot strong {
+  padding-left: 0.5rem;
+  display: inline-block;
+}
+
+/* Collapsible workshop details */
+details.program-day {
+  margin-bottom: 1.5rem;
+  border: 3px solid #56bb6e;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  padding: 0;
+  overflow: hidden;
+}
+
+details.program-day summary {
+  padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #56bb6e;
+  cursor: pointer;
+  border-bottom: 2px solid #56bb6e;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+details.program-day summary:hover {
+  background-color: #eaffea;
+  color: #4aa659;
+}
+
+/* Header and event banner */
+header {
+  position: relative;
+  text-align: center;
+  background-position: center;
+}
+
+.event-banner {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3rem;
+  padding: 1rem 2rem;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Images */
+img {
+  width: 80%;
+  height: auto;
+  display: inline-block;
+}
+
+/* Navigation styling */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #fff8dc;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  text-decoration: none;
+  color: #77c4c7;
+  font-weight: bold;
+  font-size: 3rem;
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: #56bb6e;
+}
+
+nav a.active {
+  border-bottom: 3px solid #56bb6e;
+}
+
+/* Main container */
+main {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Horizontal rule */
+hr {
+  height: 3px;
+  background-color: #56bb6e;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* Button styles */
+.back-to-top,
+.registerButton {
+  font-family: 'Bubblegum', sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  min-width: 7.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s;
+  white-space: nowrap;
+}
+
+.back-to-top span {
+  display: inline-block;
+  transform: translateY(0.65rem);
+}
+
+.back-to-top {
+  background-color: #77c4c7;
+  color: white;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: none;
+}
+
+.registerButton {
+  background-color: #56bb6e;
+  color: white;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.registerButton span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Background blobs */
+.animated-blobs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  background-color: #fff8dc;
+  opacity: 0.35;
+  border-radius: 50%;
+  clip-path: ellipse(50% 40% at 50% 50%);
+  animation: floatBlob 18s ease-in-out infinite;
+  transform-origin: center;
+  filter: blur(1px);
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Blob animation */
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+  .event-banner { font-size: 1.5rem; }
+}
+
+@media (max-width: 800px) {
+  .event-banner { font-size: 0.9rem; }
+}
+
+@media (max-width: 600px) {
+  nav a { font-size: 1.2rem; }
+  main { padding: 1rem; }
+  img { width: 100%; }
+  .program-overview { font-size: 0.5rem; }
+}
