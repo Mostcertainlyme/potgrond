@@ -89,7 +89,7 @@ ul {
 /* Specific cell widths */
 .program-overview table td:first-child,
 .program-overview table th:first-child {
-  width: 14%;
+  width: 15%;
 }
 
 .program-overview table td:nth-child(2),
