@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potgrond Event</title>
+  <style>
+    @font-face {
+      font-family: 'Bubblegum';
+      src: url('fonts/Bubblegum.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Bubblegum', sans-serif;
+      background-color: #fbeda0;
+
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      font-size: 2rem;
+      color: #56bb6e;
+    }
+
+    p {
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: black;
+    }
+
+
+
+
+
+    .event-description {
+      padding: 0.75rem 1.25rem;
+      margin: 0;
+      border-radius: 6px;
+      font-size: 1.1rem;
+    }
+
+    .program-overview table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      border: 3px solid #56bb6e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
+
+      font-weight: bold;
+    }
+
+    .program-overview tr:first-child th:first-child {
+      border-top-left-radius: 10px;
+    }
+
+    .program-overview tr:first-child th:last-child {
+      border-top-right-radius: 10px;
+    }
+
+    .program-overview tr:last-child td:first-child {
+      border-bottom-left-radius: 10px;
+    }
+
+    .program-overview tr:last-child td:last-child {
+      border-bottom-right-radius: 10px;
+    }
+
+    /* Remove right border on last cell in a row */
+    .program-overview tr td:last-child,
+    .program-overview tr th:last-child {
+      border-right: none;
+    }
+
+    .program-overview th,
+    .program-overview td {
+      padding: 0.4rem;
+      text-align: left;
+    }
+
+    /* Remove bottom border on last row */
+    .program-overview tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* table layout fixed for equal spacing */
+    .program-overview table {
+      table-layout: fixed;
+    }
+
+
+    .program-overview td.clickable {
+      color: #77c4c7;
+      cursor: pointer;
+    }
+
+    .program-overview td.clickable:hover {
+      color: #56bb6e;
+      background-color: #eaffea;
+      font-weight: bold;
+    }
+
+
+    .program-overview tbody tr:nth-child(odd) {
+      background-color: #fff8dc;
+    }
+
+    .time-slot {
+      margin-bottom: 0;
+      padding: 1rem 1.25rem;
+    }
+
+    /* Group every two elements (time + description) for alternating background */
+    .program-day .time-slot:nth-of-type(odd) {
+      background-color: #fff8dc;
+    }
+
+    /* .program-day .time-slot:nth-of-type(4n+3),
+    .program-day .time-slot:nth-of-type(4n+4) {
+      background-color: #fef0d0;
+    } */
+
+    .time-slot strong {
+      padding-left: 0.5rem;
+      display: inline-block;
+    }
+
+    details.program-day {
+      margin-bottom: 1.5rem;
+      border: 3px solid #56bb6e;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+      padding: 0;
+      overflow: hidden;
+      /* z-index: -1; */
+    }
+
+
+
+    details.program-day summary {
+      padding: 1rem 1.5rem;
+      font-size: 1.4rem;
+      font-weight: bold;
+      /* background-color: #fbeda0; */
+      color: #56bb6e;
+      cursor: pointer;
+      border-bottom: 2px solid #56bb6e;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    details.program-day summary:hover {
+      background-color: #eaffea;
+      color: #4aa659;
+    }
+
+    header {
+      position: relative;
+      text-align: center;
+      background-position: center;
+    }
+
+    /* Event banner floats over the bottom of the header */
+    .event-banner {
+      position: absolute;
+      bottom: 1rem;
+      /* fine-tune how much it overlaps */
+      left: 50%;
+      transform: translateX(-50%);
+      /* background-color: #fff8dc; */
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 3rem;
+      padding: 1rem 2rem;
+      z-index: 5;
+      pointer-events: none;
+      /* so nav below is clickable */
+    }
+
+    img {
+      width: 80%;
+      height: auto;
+      display: inline-block;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: #fff8dc;
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #77c4c7;
+      font-weight: bold;
+      font-size: 3rem;
+      transition: color 0.2s;
+    }
+
+    hr {
+      height: 3px;
+      background-color: #56bb6e;
+      border: none;
+      border-radius: 4px;
+      /* margin-top: 1rem; */
+      margin-bottom: 1rem;
+    }
+
+    nav a:hover {
+      color: #56bb6e;
+    }
+
+    nav a.active {
+      border-bottom: 3px solid #56bb6e;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* BEGIN BUTTONS */
+
+    .back-to-top,
+    .registerButton {
+      font-family: 'Bubblegum', sans-serif;
+      /* Enforce consistency */
+      font-size: 1.3rem;
+      font-weight: bold;
+      padding: 0rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 3rem;
+      min-width: 7.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+    }
+
+    .back-to-top span {
+      display: inline-block;
+      transform: translateY(0.65rem);
+      /* Adjust this until perfectly aligned */
+    }
+
+    /* .back-to-top {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background-color: #77c4c7;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+      display: none;
+    } */
+
+    .back-to-top {
+      background-color: #77c4c7;
+      color: white;
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      display: none;
+      /* stays hidden until scroll */
+    }
+
+    .registerButton {
+      background-color: #56bb6e;
+      color: white;
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+    }
+
+    .registerButton span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+        /* END BUTTONS */
+
+
+    @media (max-width: 600px) {
+      nav a {
+        font-size: 1.2rem;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      .program-overview {
+        font-size: 0.5rem;
+      }
+
+    }
+
+    @media (max-width: 1000px) {
+      .event-banner {
+        font-size: 1.5rem;
+      }
+    }
+
+
+    @media (max-width: 800px) {
+      .event-banner {
+        font-size: 0.9rem;
+      }
+    }
+
+    .program-overview table td:first-child,
+    .program-overview table th:first-child {
+      width: 14%;
+
+    }
+
+    .program-overview table td:nth-child(2),
+    .program-overview table th:nth-child(2) {
+      width: 10%;
+      text-align: center;
+    }
+
+    /* contact form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-color: #fff8dc;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      font-family: Arial, sans-serif;
+    }
+
+    .contact-form label {
+      font-weight: bold;
+      color: #56bb6e;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 2px solid #56bb6e;
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      background-color: white;
+      color: black;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: #4aa659;
+      background-color: #fefae0;
+    }
+
+    .contact-form button {
+      align-self: start;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #56bb6e;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Bubblegum', sans-serif;
+    }
+
+    .contact-form button:hover {
+      background-color: #4aa659;
+    }
+
+    /* blobs */
+    .animated-blobs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      min-height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .blob {
+      position: absolute;
+      background-color: #fff8dc;
+      opacity: 0.35;
+      border-radius: 50%;
+      clip-path: ellipse(50% 40% at 50% 50%);
+      animation: floatBlob 18s ease-in-out infinite;
+      transform-origin: center;
+      filter: blur(1px);
+      max-width: 100vw;
+      /* prevent overflow beyond screen width */
+      overflow-x: hidden;
+    }
+
+    /* Customize each blob's placement, size, and animation delay */
+    .blob-1 {
+      width: 600px;
+      height: 500px;
+      top: 100px;
+      left: -200px;
+      animation-delay: 0s;
+    }
+
+    .blob-2 {
+      width: 400px;
+      height: 350px;
+      top: 800px;
+      right: -150px;
+      animation-delay: 4s;
+    }
+
+    .blob-3 {
+      width: 700px;
+      height: 550px;
+      top: 1400px;
+      left: -180px;
+      animation-delay: 2s;
+    }
+
+    .blob-4 {
+      width: 500px;
+      height: 450px;
+      top: 2200px;
+      right: -100px;
+      animation-delay: 6s;
+    }
+
+    .blob-5 {
+      width: 600px;
+      height: 500px;
+      top: 2800px;
+      left: -200px;
+      animation-delay: 1s;
+    }
+
+    /* Float animation */
+    @keyframes floatBlob {
+
+      0%,
+      100% {
+        transform: translateY(0px) scale(1);
+      }
+
+      50% {
+        transform: translateY(-30px) scale(1.05);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .blob-1 {
+        width: 1000px;
+        height: 900px;
+      }
+
+      .blob-2 {
+        width: 800px;
+        height: 700px;
+      }
+
+      .blob-3 {
+        width: 1100px;
+        height: 900px;
+      }
+
+      .blob-4 {
+        width: 900px;
+        height: 800px;
+      }
+
+      .blob-5 {
+        width: 1000px;
+        height: 900px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id="home"></div>
+  <header>
+    <img src="images/potgrond2.png" alt="Event Header Image" />
+    <div class="event-banner">
+      SATURDAY 30 AUGUST<br>12 AM – 6 PM
+    </div>
+  </header>
+
+
+
+  <nav>
+    <!-- <a href="#register">Register</a> -->
+    <a href="#about">About</a>
+    <a href="#program">Programme</a>
+    <a href="#preparation">Practical</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <a href="#home" class="back-to-top"><span>↑ Back to Top</span></a>
+  <a href="mailto:example@proton.me" class="registerButton">Register ✍️</a>
+
+  <div class="animated-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
+
+  <main>
+    <section id="about">
+      <h2>About the Event</h2>
+      <p>We welcome you to join us for a <strong>community event</strong> that is set in <strong>nature</strong> and is
+        all about compassionate connection, playfulness, empowerment, knowledge sharing, exploring new ways of
+        community-building and finding like-minded people.<br><br>
+        We offer different <strong>workshops</strong> for all levels of dept and connection and there will be a
+        <strong>fair</strong> where you can find arts and crafts by (local) queer artists/ crafters. There will be a
+        <strong>chill out space</strong> where you can listen simultaneously to <strong>relaxing music</strong>, some
+        active workshops and some <strong>panel conversations</strong>.<br><br>
+        We will also host a <strong>mutual aid kitchen</strong> for which the proceeds will go to a Palestinian
+        cause.<br><br>
+        You can register for this event by clicking the register button in the bottom-left corner!<br><br>
+        We hope to see you there!
+      </p>
+    </section>
+
+    <section id="program">
+      <h2>Programme Overview</h2>
+
+      <!-- Overview Table -->
+      <div class="program-overview">
+        <table>
+          <thead>
+            <tr>
+              <th>BLOCKS</th>
+              <th>TIME</th>
+              <th>Behind The Garden Shed</th>
+              <th>Vegetable Garden</th>
+              <th>Under The Tree</th>
+              <th>Neadow Behind The Garden</th>
+              <th>Gather At The Terrace</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>ARRIVAL</td>
+              <td>12:00 - 13:00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>WORKSHOP ROUND 1</td>
+              <td>13:00 - 14:30</td>
+              <td>Drag</td>
+              <td></td>
+              <td>"Hoe word ik een graafdier?"</td>
+              <td>Boxing</td>
+              <td>Trans Bodies</td>
+            </tr>
+            <tr>
+              <td>BREAK</td>
+              <td>14:30 - 15:30</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+
+            </tr>
+            <tr>
+              <td>WORKSHOP ROUND 2</td>
+              <td>15:30 - 17:00</td>
+              <td></td>
+              <td>Somatic Yoga</td>
+              <td>Resilience in Gardening</td>
+              <td>Inner Compass</td>
+              <td>Discriminatie Wetgeving</td>
+            </tr>
+            <tr>
+              <td>CLOSING</td>
+              <td>17:00 - 18:00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Collapsible Version -->
+      <h2>Programme Details</h2>
+      Workshop Round 1
+      <hr>
+      <details class="program-day">
+        <summary><strong>Drag Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>13:00 - 14:30</strong> Bring along: mirror
+          <p class="event-description">TBA</p>
+          <br><br><strong>Bring along: mirror</strong>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>&quot;Hoe word ik een graafdier?&quot; Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>13:00 - 14:30</strong>
+          <p class="event-description">*Hoe word ik een graafdier? Een workshop over gronden & creatieve expressie*
+            “De grond is niet van ons; wij zijn van de grond, een korreltje in een verzameling van fysieke elementen die
+            door ieder wezen anders worden waargenomen.” (Nikki Dekker)
+            Laten we samen onze relatie tot de grond verkennen. Wat speelt zich allemaal af onder onze voeten? Wat horen
+            we, voelen we, ruiken we? Wat gebeurt er wanneer we aarden?
+            We gaan die vragen verkennen in drie fasen. Reflectie - beweging - (creatieve) expressie. We keren in
+            onszelf en dan weer naar buiten, met aandacht en liefde voor onze inherente speelsheid en dierlijkheid.
+            Voor wie? Zij die rust en inspiratie (willen) vinden in het aarden. Iedereen die nieuwsgierig is naar het
+            leven onder de oppervlakte.
+            <br><br>
+            <strong>Meebrengen: blinddoek (vrijblijvend); jouw vertrouwde knutsel-, teken-, verf-, … spullen</strong>
+          </p>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>Boxing Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>13:00 - 14:30</strong>
+          <p class="event-description">As a part of Van Monck Autonomous Gym, monck xxxx has been training behind closed
+            doors without the presence of cis men. The collective is planning to open up these monthly trainings to all.
+            Curious? Join this workshop and get to know us! Expect a playful mix of cardio and strength exercises and
+            English and kickbox. All levels welcome!
+            <br><br><strong>Bring along: bottle of water.</strong>
+          </p>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>Trans Bodies Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>13:00 - 14:30</strong>
+          <p class="event-description">In this workshop people will be invited to share something about their trans body
+            and relationship to it. It will be a space where people can be naked or maybe just take off a sock or two.
+            There is no expectation to take of any clothing at all. Having run spaces like this in the past, the
+            positive impact has been great to see. People have understood their body in a new way and been able to see
+            their own experiences and questions reflected in others. It's a way of showing honest representation of
+            trans bodies we still miss in society. Please bring a towel or other item you can sit on so we don't have
+            bare bums on the seating!</p>
+        </div>
+      </details>
+
+      <br>
+      Workshop Round 2
+      <hr>
+
+      <details class="program-day">
+        <summary><strong>Somatic Yoga</strong></summary>
+        <div class="time-slot">
+          <strong>15:30 - 17:00</strong>
+          <p class="event-description">Somatic Yoga is all about listening to your body and becoming aware of its subtle
+            sensations. It's a soft, explorative form of yoga in which movements are are slow and mindful. This approach
+            helps you notice tensions and give space for it, get in touch with yourself more and experience your body as
+            a safe place.
+            It's open to everyone, regardless of experience or flexibility.
+            We're looking forward to moving together and give our bodies space to explore further.
+            <br><br><strong>Bring along: yoga mat and other props to make you feel comfortable, bottle of
+              water.</strong>
+          </p>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>Resilience in Gardening</strong></summary>
+        <div class="time-slot">
+          <strong>15:30 - 17:00</strong>
+          <p class="event-description">Join us for finding resilience in gardening. This workshop focuses on checking in
+            with yourself using nature. We'll hang out in the vegetable garden and appreciate self reliance. In a world
+            that expects you to live fast and productive, we take a step back and slow down. We might make some seed
+            bombs to spread the love for nature.
+            <br><br><strong>Bring along: something to kneel on/ knee pillow.</strong>
+          </p>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>Inner Compass Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>15:30 - 17:00</strong>
+          <p class="event-description">In this gentle, body-based workshop, we explore how to recognize and reconnect
+            with our inner 'yes' and 'no'. Many of us — especially those in queer and marginalized communities — have
+            been taught to override our instincts and ignore our body's signals.
+            Through guided reflection and somatic exercises, we'll begin to tune in to the subtle ways our bodies
+            communicate what feels right or wrong for us.
+            This workshop is trauma-informed, queer-centered, and consent-based. Everything is an invitation — nothing
+            is mandatory. You are welcome exactly as you are.
+            No previous experience with somatic work needed.
+            <br><br><strong> Bring along: yoga mat or something to sit on comfortably, journal or notebook if you have
+              one, pen, object that has important value for you, bottle of water.</strong>
+          </p>
+        </div>
+      </details>
+
+      <details class="program-day">
+        <summary><strong>Discriminatie Wetgeving Workshop</strong></summary>
+        <div class="time-slot">
+          <strong>15:30 - 17:00</strong>
+          <p class="event-description">We kennen allemaal discriminatie, maar wat kwalificeert het recht als
+            discriminatie? En wanneer spreken we van intersectionele discriminatie?
+            In deze workshop maak je kennis met de basisbegrippen van onze Belgische anti-discriminatiewetgeving. Aan de
+            hand van diverse voorbeelden en casussen leer je de verschillende vormen van discriminatie en
+            discriminatiegronden herkennen en onderscheiden. Vervolgens gaan we dieper in op intersectionele theorie en
+            - discriminatie. Wat is het, waar komt het vandaan en hoe kwalificeert het Belgische recht dit? Je komt het
+            allemaal te weten in deze workshop!
+            <br><br><strong>Meenemen: pen en papier</strong>
+          </p>
+        </div>
+      </details>
+
+      <!-- <div class="time-slot">
+            <strong>11:15 - 12:00</strong>: Panel: Local Farming Innovations  
+            <p class="event-description">Panelists from across the region share exciting innovations in local agriculture.</p>
+        </div> -->
+      </details>
+    </section>
+
+    <section id="preparation">
+      <h2>Preparation</h2>
+      <p>How to prepare for this lovely day of connection in and out of workshop spaces?</p>
+      <p>The event is an outside event in a big garden, so we are one with the elements :) Things to consider:</p>
+      <ul>
+        <li>🌞 Sunblock to protect from the sun</li>
+        <li>☂️ An umbrella to shield you from the sun</li>
+        <li>🧢 A hat or cap</li>
+        <li>🧺 Bring something to sit on — a blanket, pillow, plastic bag… if the ground is still humid, you can sit
+          comfortably</li>
+        <li>🧘 If you want to bring a yoga mat — some workshops ask for it</li>
+        <li>🪑 A camping chair if you'd like to sit upright</li>
+        <li>💧 There will be drinks available, but bringing a bottle of water doesn't hurt</li>
+        <li>🍽️ food and drinks will be avalaible (donation/ fixed price) of which the proceeds will go to Palestine,
+          feel free to bring your own though!</li>
+        <li>📝 Some workshops require items like paper, pen, journal, or towel</li>
+      </ul>
+    </section>
+
+    <section id="location">
+      <h2>Location</h2>
+      <p><strong>Address:</strong><br>
+        Lostraat<br>
+        9920 Lovendegem<br>
+        <em>You will receive the exact address after registration!</em>
+      </p>
+
+      <p><strong>How to get there:</strong></p>
+      <ul>
+        <li>🚌 Bus stop <strong>Lovendegem Kerk</strong> – 15 minutes walking distance</li>
+        <!-- <li>🚆 Train station <strong>Landegem</strong> – 7 minutes by car</li> -->
+        <li>🚲 Lovely bike ride, especially in great weather!</li>
+      </ul>
+
+      <p style="font-weight: bold; color: #c0392b;">‼️ If you have accessibility issues or transport limitations, please
+        reach out to us — we'll find a solution together!</p>
+    </section>
+
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a href="mailto:example@proton.me" target="_blank">example@proton.me</a></p>
+
+    </section>
+
+    <!-- <section id="contact">
+      <h2>Contact</h2>
+      <form class="contact-form" onsubmit="handleMailTo(event)">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" placeholder="What's it about?" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit">Open Email App</button>
+      </form>
+    </section> -->
+
+
+
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Helper: scroll with nav offset
+      function scrollWithOffset(targetElement) {
+        const navHeight = document.querySelector("nav").offsetHeight;
+        const elementTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementTop - navHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+
+      // Table cell click to scroll to corresponding section
+      // Enhanced cellMap using row+column key
+      const detailMap = {
+        "1-2": "Drag Workshop",
+        "1-4": '"Hoe word ik een graafdier?" Workshop',
+        "1-5": "Boxing Workshop",
+        "1-6": "Trans Bodies Workshop",
+        "2-3": "Somatic Yoga",
+        "2-4": "Resilience in Gardening",
+        "2-5": "Inner Compass Workshop",
+        "2-6": "Discriminatie Wetgeving Workshop"
+      };
+
+      const rows = document.querySelectorAll(".program-overview tbody tr");
+
+      rows.forEach((row, rowIndex) => {
+        const rowType = rowIndex; // 0 = ARRIVAL, 1 = ROUND 1, 2 = BREAK, 3 = ROUND 2, 4 = CLOSING
+        row.querySelectorAll("td").forEach((cell, colIndex) => {
+          if (colIndex === 0 || !cell.textContent.trim()) return;
+
+          cell.classList.add("clickable");
+
+          cell.addEventListener("click", () => {
+            const round =
+              rowType === 1 ? "1" :
+                rowType === 3 ? "2" :
+                  null;
+
+            if (!round) return;
+
+            const key = `${round}-${colIndex}`;
+            const location = detailMap[key];
+            if (!location) return;
+
+            const allDetails = document.querySelectorAll("details.program-day");
+            allDetails.forEach(d => d.open = false);
+
+            const target = [...allDetails].find(d =>
+              d.querySelector("summary").textContent.trim().toLowerCase() === location.toLowerCase()
+            );
+
+            if (target) {
+              target.open = true;
+              scrollWithOffset(target);
+            }
+          });
+        });
+      });
+
+
+      // Smooth scroll for nav links
+      document.querySelectorAll("nav a[href^='#']").forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            scrollWithOffset(targetElement);
+            history.pushState(null, '', `#${targetId}`);
+          }
+        });
+      });
+
+      // Back to Top logic
+      const backToTop = document.querySelector('.back-to-top');
+      window.addEventListener('scroll', () => {
+        backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+      });
+
+      backToTop.addEventListener('click', e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    // Handled mail request
+    function handleMailTo(event) {
+      event.preventDefault(); // Prevent actual form submission
+
+      const subject = encodeURIComponent(document.getElementById('subject').value);
+      const body = encodeURIComponent(document.getElementById('message').value);
+      const email = "your@email.com"; // ← Replace with your own email
+
+      indow.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+</body>
+
+</html>
