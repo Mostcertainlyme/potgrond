@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Maps table cell locations (by row and column index) to corresponding workshop detail titles
   const detailMap = {
     "1-2": "Drag Workshop",
-    "1-4": '"Hoe word ik een graafdier?" Workshop',
+    "1-4": 'Hoe word ik een graafdier?',
     "1-5": "Boxing Workshop",
     "1-6": "Trans Bodies Workshop",
     "2-2": "Somatic Yoga",
