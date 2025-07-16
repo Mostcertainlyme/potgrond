@@ -245,7 +245,7 @@ hr {
 
 .back-to-top span {
   display: inline-block;
-  transform: translateY(0.65rem);
+  transform: translateY(0.70rem);
 }
 
 .back-to-top {
@@ -342,6 +342,11 @@ hr {
 a
 {
   color: #77c4c7;
+}
+
+a:hover
+{
+  color: #56bb6e;
 }
 
 
