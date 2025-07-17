@@ -243,6 +243,17 @@ hr {
   white-space: nowrap;
 }
 
+.back-to-top:hover,
+.registerButton:hover {
+    color: white;
+}
+.back-to-top:active,
+.registerButton:active {
+    color: white;
+}
+
+
+
 .back-to-top span {
   display: inline-block;
   transform: translateY(0.70rem);
