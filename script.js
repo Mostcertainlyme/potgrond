@@ -17,13 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Maps table cell locations (by row and column index) to corresponding workshop detail titles
 const detailMap = {
-  "1-2": "Drag Workshop",
+  "1-2": "Strength for trans masc & non binary bois",
   "1-4": "Hoe word ik een graafdier?",
   "1-5": "Boxing Workshop",
   "1-6": "Trans Bodies Workshop",
   "break-4": "Line Dance",
   "2-2": "Somatic Yoga",
-  "2-3": "Resilience in Gardening",
+  // "2-3": "Resilience in Gardening",
   "2-4": "Inner Compass Workshop",
   "2-5": "Discriminatie Wetgeving Workshop"
 };
