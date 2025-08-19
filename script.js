@@ -23,7 +23,6 @@ const detailMap = {
   "1-6": "Trans Bodies Workshop",
   "break-4": "Line Dance",
   "2-2": "Somatic Yoga",
-  // "2-3": "Resilience in Gardening",
   "2-4": "Inner Compass Workshop",
   "2-5": "Discriminatie Wetgeving Workshop"
 };
@@ -96,14 +95,3 @@ const detailMap = {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
-
-// Opens the user's email client with subject and message filled in
-function handleMailTo(event) {
-  event.preventDefault();
-
-  const subject = encodeURIComponent(document.getElementById('subject').value);
-  const body = encodeURIComponent(document.getElementById('message').value);
-  const email = "your@email.com";
-
-  window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-}
