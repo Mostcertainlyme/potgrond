@@ -18,13 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Maps table cell locations (by row and column index) to corresponding workshop detail titles
 const detailMap = {
   "1-2": "Strength for trans masc & non binary bois",
-  "1-4": "Hoe word ik een graafdier?",
-  "1-5": "Boxing Workshop",
-  "1-6": "Trans Bodies Workshop",
-  "break-4": "Line Dance",
+  "1-3": "Hoe word ik een graafdier?",
+  "1-4": "Boxing Workshop",
+  "1-5": "Trans Bodies show & tell",
+  "break-3": "Line Dance",
   "2-2": "Somatic Yoga",
-  "2-4": "Inner Compass Workshop",
-  "2-5": "Discriminatie Wetgeving Workshop"
+  "2-3": "Inner Compass Workshop",
+  "2-4": "Discriminatie Wetgeving Workshop"
 };
   // Select all rows in the program table
   const rows = document.querySelectorAll(".program-overview tbody tr");
